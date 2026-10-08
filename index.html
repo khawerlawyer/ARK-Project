@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="ARK Group builds websites, mobile apps, presentations and AI products, provides maintenance agreements, and delivers soft skills and IT training online, in-house and on demand. Serving clients in the US, UK, Pakistan, India, Australia and beyond.">
+<link rel="canonical" href="https://www.arkgroup.info/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.arkgroup.info/">
+<meta property="og:title" content="ARK Group">
+<meta property="og:description" content="Websites, apps, presentations, AI builds, maintenance and training. One team from first sketch to long-term care.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B1E22'/%3E%3Cpath d='M5 21 Q16 4 27 21' fill='none' stroke='%23E8A33D' stroke-width='3.2' stroke-linecap='round'/%3E%3Cpath d='M8 25h16' stroke='%23E9F0EC' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>img{max-width:100%}[hidden]{display:none!important}body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+<title>ARK Group</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@75..150,300..900&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a shipwright's build sheet. Dark "hull" hero with an arc of six stations, then light chartroom sections on a 12-col grid; one saffron signal colour. */
+:root{
+  --paper:#EEF2EF; --paper-2:#E1E8E4; --card:#F8FAF8;
+  --ink:#0F2226; --ink-soft:#4A5E61; --line:#C8D3CF;
+  --hull:#0B1E22; --hull-2:#13303A; --hull-fg:#E9F0EC; --hull-mute:#93A9A8;
+  --signal:#E8A33D; --signal-ink:#2A1A02; --tide:#2F7F86;
+  --display:"Anybody","Arial Narrow",system-ui,sans-serif;
+  --body:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0E1A1D; --paper-2:#132327; --card:#16292E;
+  --ink:#E6EEEA; --ink-soft:#9DB2B0; --line:#25403F;
+  --hull:#081417; --hull-2:#102830; --hull-fg:#E9F0EC; --hull-mute:#8DA3A2;
+  --signal:#F0B04E; --signal-ink:#2A1A02; --tide:#5FB3B9; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0E1A1D; --paper-2:#132327; --card:#16292E;
+  --ink:#E6EEEA; --ink-soft:#9DB2B0; --line:#25403F;
+  --hull:#081417; --hull-2:#102830; --hull-fg:#E9F0EC; --hull-mute:#8DA3A2;
+  --signal:#F0B04E; --signal-ink:#2A1A02; --tide:#5FB3B9; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--signal);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1180px;margin-inline:auto;padding-inline:clamp(16px,4vw,40px)}
+h1,h2,h3{font-family:var(--display);line-height:1.02;margin:0;text-wrap:balance}
+h2{font-size:clamp(2.1rem,5vw,3.6rem);font-weight:800;font-stretch:118%;letter-spacing:-.01em}
+h3{font-size:1.3rem;font-weight:700;font-stretch:110%}
+p{margin:0}
+.eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tide)}
+.lead{font-size:1.15rem;color:var(--ink-soft);max-width:60ch}
+section{padding-block:clamp(64px,10vw,120px)}
+.sec-head{display:grid;gap:18px;margin-bottom:48px;max-width:780px}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--hull) 92%,transparent);backdrop-filter:blur(10px);color:var(--hull-fg);border-bottom:1px solid color-mix(in srgb,var(--hull-fg) 10%,transparent)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-weight:800;font-stretch:130%;font-size:1.2rem;letter-spacing:.02em}
+.brand svg{flex:none}
+.nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;font-size:.93rem}
+.nav ul a{text-decoration:none;color:var(--hull-mute)}
+.nav ul a:hover{color:var(--hull-fg)}
+.btn{display:inline-flex;align-items:center;gap:8px;font:600 .95rem var(--body);padding:12px 20px;border-radius:999px;border:0;cursor:pointer;text-decoration:none;background:var(--signal);color:var(--signal-ink);transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:inherit;box-shadow:inset 0 0 0 1px currentColor}
+@media (max-width:860px){.nav ul{display:none}}
+
+/* hero */
+.hero{background:var(--hull);color:var(--hull-fg);padding-block:clamp(48px,8vw,96px) 0;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(2.8rem,8.4vw,6.4rem);font-weight:900;font-stretch:125%;letter-spacing:-.02em}
+.hero h1 em{font-style:normal;color:var(--signal);font-stretch:75%;font-weight:300}
+.hero .lead{color:var(--hull-mute);margin-top:24px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.hero .eyebrow{color:var(--signal);margin-bottom:20px;display:block}
+.arc{width:100%;max-width:520px;height:auto;justify-self:center}
+.arc text{font-family:var(--mono);font-size:13px;fill:var(--hull-fg)}
+.arc .sub{fill:var(--hull-mute);font-size:10.5px}
+.manifest{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid color-mix(in srgb,var(--hull-fg) 14%,transparent);margin-top:clamp(48px,7vw,80px)}
+.manifest div{padding:22px 18px 26px;border-right:1px solid color-mix(in srgb,var(--hull-fg) 14%,transparent);min-width:0}
+.manifest div:last-child{border-right:0}
+.manifest b{display:block;font-family:var(--display);font-stretch:120%;font-size:1.25rem}
+.manifest span{font-size:.88rem;color:var(--hull-mute)}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr}.manifest{grid-template-columns:1fr 1fr}.manifest div:nth-child(2){border-right:0}.manifest div:nth-child(-n+2){border-bottom:1px solid color-mix(in srgb,var(--hull-fg) 14%,transparent)}}
+
+/* services */
+.decks{display:grid;gap:56px}
+.deck{display:grid;grid-template-columns:220px 1fr;gap:32px;border-top:2px solid var(--ink);padding-top:24px}
+.deck-label .k{font-family:var(--display);font-weight:900;font-stretch:140%;font-size:2.6rem;line-height:1}
+.deck-label p{color:var(--ink-soft);font-size:.95rem;margin-top:8px}
+.svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:2px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.svc article{background:var(--card);padding:24px;display:grid;gap:10px;align-content:start;min-width:0}
+.svc article p{color:var(--ink-soft);font-size:.95rem}
+.tag{font-family:var(--mono);font-size:.72rem;color:var(--tide);letter-spacing:.08em;text-transform:uppercase}
+.svc ul{margin:4px 0 0;padding-left:18px;color:var(--ink-soft);font-size:.9rem}
+@media (max-width:760px){.deck{grid-template-columns:1fr;gap:18px}}
+
+/* concepts */
+.concepts{background:var(--paper-2)}
+.c-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
+.c-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;display:grid;gap:16px;align-content:start;min-width:0}
+.c-card figcaption{display:grid;gap:4px}
+.c-card figcaption p{font-size:.92rem;color:var(--ink-soft)}
+.c-web{grid-column:span 7}.c-app{grid-column:span 5}.c-deck{grid-column:span 6}.c-ai{grid-column:span 6}
+@media (max-width:900px){.c-web,.c-app,.c-deck,.c-ai{grid-column:span 12}}
+figure{margin:0}
+.stage{background:var(--hull);border-radius:10px;padding:18px;display:grid;place-items:center;min-height:250px;overflow:hidden}
+/* browser */
+.browser{width:100%;background:#F7F4EE;border-radius:8px;overflow:hidden;color:#1C1C1C;box-shadow:0 20px 40px -20px #000}
+.browser .bar{display:flex;gap:6px;align-items:center;padding:8px 10px;background:#E6E1D8}
+.browser .bar i{width:9px;height:9px;border-radius:50%;background:#C9C1B3}
+.browser .bar span{margin-left:10px;font:11px var(--mono);color:#6A6458;background:#F7F4EE;padding:2px 10px;border-radius:99px}
+.browser .pg{display:grid;grid-template-columns:1.2fr 1fr;gap:14px;padding:18px}
+.browser h4{margin:0;font:800 1.35rem/1 var(--display);font-stretch:115%;color:#2B3A1F}
+.browser .ln{height:6px;background:#D8D1C4;border-radius:3px;margin-top:8px}
+.browser .pill{display:inline-block;margin-top:12px;background:#6B8E23;color:#fff;font:600 10px var(--body);padding:5px 10px;border-radius:99px}
+.browser .img{background:linear-gradient(140deg,#B7C99A,#6B8E23);border-radius:6px;min-height:96px}
+.browser .row{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.browser .row div{height:40px;background:#ECE6DB;border-radius:5px}
+/* phone */
+.phone{width:170px;aspect-ratio:9/18.5;max-width:100%;background:#111;border-radius:26px;padding:8px;box-shadow:0 20px 40px -20px #000}
+.phone .scr{height:100%;background:#F3F6FB;border-radius:19px;padding:14px 12px;display:grid;gap:9px;align-content:start;color:#14213D;font-size:10px}
+.phone .hello{font:700 13px var(--body)}
+.phone .bal{background:#1F4FD8;color:#fff;border-radius:12px;padding:10px}
+.phone .bal b{display:block;font:800 18px var(--display);font-stretch:110%;font-variant-numeric:tabular-nums}
+.phone .tx{display:flex;justify-content:space-between;background:#fff;border-radius:8px;padding:7px 8px;font-variant-numeric:tabular-nums}
+.phone .chips{display:flex;gap:5px}.phone .chips span{background:#DCE5F7;border-radius:99px;padding:3px 7px}
+/* slide */
+.slide{width:100%;aspect-ratio:16/9;background:#FFFFFF;border-radius:6px;padding:6%;display:grid;grid-template-columns:1fr 1fr;gap:6%;color:#101828;box-shadow:0 20px 40px -20px #000;max-width:100%}
+.slide .t{font:800 clamp(.9rem,2.4vw,1.4rem)/1.05 var(--display);font-stretch:120%}
+.slide .t small{display:block;font:500 .55rem var(--mono);letter-spacing:.12em;color:#B4541D;margin-bottom:6px}
+.slide .bars{display:flex;align-items:flex-end;gap:7%;height:100%;border-bottom:1px solid #D0D5DD;padding-bottom:2px}
+.slide .bars i{flex:1;background:#D0D5DD;border-radius:3px 3px 0 0}
+.slide .bars i:last-child{background:#B4541D}
+/* ai chat */
+.chat{width:100%;max-width:400px;display:grid;gap:10px;font-size:.85rem}
+.msg{padding:10px 13px;border-radius:12px;max-width:85%;line-height:1.45}
+.msg.u{justify-self:end;background:var(--signal);color:var(--signal-ink);border-bottom-right-radius:3px}
+.msg.a{background:var(--hull-2);color:var(--hull-fg);border-bottom-left-radius:3px}
+.msg.a small{display:block;margin-top:6px;font:10px var(--mono);color:var(--hull-mute)}
+.typing{display:flex;gap:4px;padding:12px 14px;background:var(--hull-2);border-radius:12px;width:max-content}
+.typing i{width:6px;height:6px;border-radius:50%;background:var(--hull-mute);animation:b 1.2s infinite}
+.typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
+@keyframes b{0%,60%,100%{opacity:.3}30%{opacity:1}}
+
+/* process */
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;counter-reset:s;list-style:none;padding:0;margin:0}
+.steps li{padding:22px 20px 0 0;border-top:2px solid var(--line);position:relative;min-width:0}
+.steps li::before{counter-increment:s;content:"0" counter(s);font:500 .8rem var(--mono);color:var(--tide);display:block;margin-bottom:12px}
+.steps li::after{content:"";position:absolute;top:-6px;left:0;width:10px;height:10px;border-radius:50%;background:var(--signal)}
+.steps h3{font-size:1.15rem;margin-bottom:8px}
+.steps p{font-size:.92rem;color:var(--ink-soft)}
+@media (max-width:860px){.steps{grid-template-columns:1fr 1fr;row-gap:36px}}
+@media (max-width:480px){.steps{grid-template-columns:1fr}}
+
+/* care plans */
+.care{background:var(--hull);color:var(--hull-fg)}
+.care .lead{color:var(--hull-mute)}.care .eyebrow{color:var(--signal)}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.plan{border:1px solid color-mix(in srgb,var(--hull-fg) 16%,transparent);border-radius:14px;padding:28px;display:grid;gap:14px;align-content:start;min-width:0}
+.plan.pick{background:var(--hull-2);border-color:var(--signal)}
+.plan h3{font-size:1.5rem}
+.sla{font-family:var(--mono);font-size:.85rem;color:var(--signal)}
+.plan ul{margin:0;padding:0;list-style:none;display:grid;gap:9px;font-size:.93rem;color:var(--hull-mute)}
+.plan li{padding-left:22px;position:relative}
+.plan li::before{content:"";position:absolute;left:0;top:.6em;width:10px;height:2px;background:var(--signal)}
+@media (max-width:860px){.plans{grid-template-columns:1fr}}
+
+/* training */
+.train-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.modes{display:grid;gap:12px}
+.mode{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
+.mode .ic{width:42px;height:42px;border-radius:10px;background:var(--paper-2);display:grid;place-items:center;color:var(--tide)}
+.mode p{font-size:.93rem;color:var(--ink-soft)}
+.catalog{display:grid;gap:22px}
+.catalog h3{font-size:1.05rem;font-stretch:120%;letter-spacing:.02em;margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{border:1px solid var(--line);border-radius:999px;padding:6px 13px;font-size:.88rem;background:var(--card)}
+@media (max-width:860px){.train-grid{grid-template-columns:1fr}}
+
+/* leaders */
+.leaders{background:var(--paper-2)}
+.people{display:grid;grid-template-columns:1.25fr 1fr;gap:24px}
+.person{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:clamp(24px,4vw,40px);display:grid;gap:18px;align-content:start;min-width:0}
+.mono-av{width:78px;height:78px;border-radius:50%;display:grid;place-items:center;font:900 1.7rem var(--display);font-stretch:130%;background:var(--hull);color:var(--signal)}
+.person .role{font-family:var(--mono);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tide)}
+.person h3{font-size:clamp(1.8rem,3.6vw,2.6rem);font-weight:900;font-stretch:120%}
+.person p{color:var(--ink-soft)}
+.person blockquote{margin:0;border-left:3px solid var(--signal);padding-left:16px;font-size:1.08rem;color:var(--ink)}
+@media (max-width:860px){.people{grid-template-columns:1fr}}
+
+/* team */
+.crew{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.crew div{border-top:2px solid var(--ink);padding-top:18px;display:grid;gap:8px}
+.crew p{font-size:.93rem;color:var(--ink-soft)}
+.promise{margin-top:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.promise div{background:var(--card);padding:20px}
+.promise b{font-family:var(--display);font-stretch:115%;display:block;margin-bottom:4px}
+.promise span{font-size:.9rem;color:var(--ink-soft)}
+
+/* world */
+.world{background:var(--hull);color:var(--hull-fg)}
+.world .lead{color:var(--hull-mute)}.world .eyebrow{color:var(--signal)}
+.clocks{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:2px;background:color-mix(in srgb,var(--hull-fg) 12%,transparent);border-radius:12px;overflow:hidden}
+.clock{background:var(--hull);padding:22px 20px;display:grid;gap:4px}
+.clock .cc{font-family:var(--mono);font-size:.75rem;color:var(--hull-mute);letter-spacing:.1em}
+.clock .city{font-weight:600}
+.clock time{font:700 2rem var(--display);font-stretch:85%;font-variant-numeric:tabular-nums;color:var(--hull-fg)}
+.clock .st{font:11px var(--mono);color:var(--hull-mute)}
+.clock .st.on{color:var(--signal)}
+.world-note{margin-top:24px;color:var(--hull-mute);font-size:.93rem;max-width:70ch}
+
+/* contact */
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:start}
+form{display:grid;grid-template-columns:1fr 1fr;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:clamp(20px,3vw,32px)}
+form .full{grid-column:1/-1}
+label{display:grid;gap:6px;font-size:.85rem;font-weight:600}
+input,select,textarea{font:inherit;font-size:.95rem;padding:11px 12px;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink);width:100%}
+textarea{min-height:110px;resize:vertical}
+.ok{grid-column:1/-1;background:var(--paper-2);border-radius:10px;padding:16px;display:grid;gap:10px;font-size:.92rem}
+.ok pre{margin:0;white-space:pre-wrap;font:12.5px/1.5 var(--mono);color:var(--ink-soft)}
+@media (max-width:860px){.contact-grid{grid-template-columns:1fr}}
+@media (max-width:520px){form{grid-template-columns:1fr}}
+.contact-points{display:grid;gap:14px;margin-top:28px}
+.contact-points div{display:flex;gap:12px;font-size:.95rem;color:var(--ink-soft)}
+.contact-points b{color:var(--ink);min-width:90px}
+
+footer{background:var(--hull);color:var(--hull-mute);padding-block:36px;font-size:.88rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
+footer .brand{color:var(--hull-fg)}
+</style>
+
+</head>
+<body>
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a href="#top" class="brand" aria-label="ARK Group home">
+      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><path d="M3 22 Q16 2 29 22" fill="none" stroke="var(--signal)" stroke-width="3.2" stroke-linecap="round"/><path d="M6 26h20" stroke="var(--hull-fg)" stroke-width="3.2" stroke-linecap="round"/></svg>
+      ARK GROUP
+    </a>
+    <ul>
+      <li><a href="#build">Build</a></li>
+      <li><a href="#concepts">Concepts</a></li>
+      <li><a href="#care">Care plans</a></li>
+      <li><a href="#train">Training</a></li>
+      <li><a href="#people">People</a></li>
+      <li><a href="#world">Worldwide</a></li>
+    </ul>
+    <a href="#contact" class="btn">Start a project</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">Websites · Apps · Presentations · AI · Training</span>
+        <h1>We build what <em>carries</em> your business.</h1>
+        <p class="lead">ARK Group designs and engineers websites, mobile apps, pitch decks and AI products, keeps them running under clear maintenance agreements, and trains your people to get the most from them. One team, from first sketch to long-term care.</p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn">Book a discovery call</a>
+          <a href="#concepts" class="btn ghost">See concepts</a>
+        </div>
+      </div>
+      <svg class="arc" viewBox="0 0 520 380" role="img" aria-label="The ARK arc: six connected services from Strategy to Training">
+        <defs>
+          <linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="var(--tide)"/><stop offset="1" stop-color="var(--signal)"/></linearGradient>
+        </defs>
+        <path id="arcpath" d="M40 330 A220 220 0 0 1 480 330" fill="none" stroke="url(#g)" stroke-width="3"/>
+        <path d="M40 330 A220 220 0 0 1 480 330" fill="none" stroke="var(--hull-fg)" stroke-opacity=".08" stroke-width="40"/>
+        <line x1="20" y1="350" x2="500" y2="350" stroke="var(--hull-fg)" stroke-opacity=".25" stroke-width="2"/>
+        <g>
+          <circle cx="40" cy="330" r="7" fill="var(--tide)"/><text x="40" y="372" text-anchor="middle">Strategy</text>
+          <circle cx="83" cy="200" r="7" fill="var(--tide)"/><text x="102" y="196">Design</text><text x="102" y="211" class="sub">UX · brand · decks</text>
+          <circle cx="180" cy="122" r="7" fill="var(--tide)"/><text x="180" y="98" text-anchor="middle">Build</text><text x="180" y="83" class="sub" text-anchor="middle">web · apps</text>
+          <circle cx="340" cy="122" r="7" fill="var(--signal)"/><text x="340" y="98" text-anchor="middle">AI</text><text x="340" y="83" class="sub" text-anchor="middle">agents · copilots</text>
+          <circle cx="437" cy="200" r="7" fill="var(--signal)"/><text x="418" y="196" text-anchor="end">Care</text><text x="418" y="211" class="sub" text-anchor="end">SLA maintenance</text>
+          <circle cx="480" cy="330" r="7" fill="var(--signal)"/><text x="480" y="372" text-anchor="middle">Train</text>
+        </g>
+        <circle r="6" fill="var(--hull-fg)"><animateMotion dur="7s" repeatCount="indefinite"><mpath href="#arcpath"/></animateMotion></circle>
+        <text x="260" y="300" text-anchor="middle" style="font-family:var(--display);font-size:46px;font-weight:900;font-stretch:140%;fill:var(--hull-fg)">ARK</text>
+        <text x="260" y="324" text-anchor="middle" class="sub">STRATEGY → TRAINING</text>
+      </svg>
+    </div>
+    <div class="manifest">
+      <div><b>6 disciplines</b><span>under one roof</span></div>
+      <div><b>5+ markets</b><span>US · UK · PK · IN · AU</span></div>
+      <div><b>24 h coverage</b><span>teams across time zones</span></div>
+      <div><b>AI-native</b><span>we ship our own AI products</span></div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="build">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">What we do</span>
+      <h2>Build it. Keep it running. Teach it.</h2>
+      <p class="lead">Most agencies stop at launch. We organise our work in three decks so your product has a crew before, during and long after go-live.</p>
+    </div>
+    <div class="decks">
+      <div class="deck">
+        <div class="deck-label"><div class="k">Build</div><p>Products designed, engineered and shipped.</p></div>
+        <div class="svc">
+          <article><span class="tag">Web</span><h3>Websites & web platforms</h3><p>Corporate sites, portals, SaaS dashboards and e-commerce stores that load fast and rank well.</p><ul><li>Next.js, React, WordPress, Shopify</li><li>SEO-ready, accessible builds</li></ul></article>
+          <article><span class="tag">Mobile</span><h3>iOS & Android apps</h3><p>Native and cross-platform apps with clean onboarding, payments and analytics built in.</p><ul><li>Flutter, React Native, Swift, Kotlin</li><li>App Store & Play Store launch</li></ul></article>
+          <article><span class="tag">Story</span><h3>Presentations & pitch decks</h3><p>Investor decks, sales presentations and board reports with data that reads at a glance.</p><ul><li>PowerPoint, Keynote, Google Slides</li><li>Templates your team can reuse</li></ul></article>
+          <article><span class="tag">AI</span><h3>AI builds</h3><p>Chat assistants, document intelligence, workflow automation and custom AI agents trained on your knowledge.</p><ul><li>LLM apps, RAG search, agents</li><li>Secure, auditable deployments</li></ul></article>
+        </div>
+      </div>
+      <div class="deck">
+        <div class="deck-label"><div class="k">Extend</div><p>Work clients often add alongside a build.</p></div>
+        <div class="svc">
+          <article><span class="tag">Identity</span><h3>Brand & UI/UX design</h3><p>Logos, design systems, wireframes and clickable prototypes tested with real users.</p></article>
+          <article><span class="tag">Growth</span><h3>SEO & digital marketing</h3><p>Search, social and email campaigns tied to the analytics on your site.</p></article>
+          <article><span class="tag">Cloud</span><h3>Cloud, DevOps & security</h3><p>Hosting on AWS, Azure or Vercel, CI/CD pipelines, backups and security hardening.</p></article>
+          <article><span class="tag">Data</span><h3>Dashboards & automation</h3><p>Business dashboards, CRM and ERP integrations, and process automation that removes manual work.</p></article>
+          <article><span class="tag">Quality</span><h3>QA & testing</h3><p>Manual and automated testing across devices before every release.</p></article>
+          <article><span class="tag">Media</span><h3>Content & motion</h3><p>Copywriting, explainer videos and product walkthroughs for launches.</p></article>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="concepts" id="concepts">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Concepts</span>
+      <h2>A look at how we think.</h2>
+      <p class="lead">Concept pieces from our studio that show the range: a brand-led website, a fintech app, an investor slide and an AI assistant.</p>
+    </div>
+    <div class="c-grid">
+      <figure class="c-card c-web">
+        <div class="stage">
+          <div class="browser" aria-hidden="true">
+            <div class="bar"><i></i><i></i><i></i><span>greenacre-farms.com</span></div>
+            <div class="pg">
+              <div><h4>Fresh from field to your door.</h4><div class="ln"></div><div class="ln" style="width:80%"></div><span class="pill">Order a box</span></div>
+              <div class="img"></div>
+              <div class="row"><div></div><div></div><div></div></div>
+            </div>
+          </div>
+        </div>
+        <figcaption><span class="tag">Website concept</span><h3>Organic grocer storefront</h3><p>Brand-led e-commerce with subscriptions, delivery zones and a 1.2 s mobile load target.</p></figcaption>
+      </figure>
+      <figure class="c-card c-app">
+        <div class="stage">
+          <div class="phone" aria-hidden="true">
+            <div class="scr">
+              <div class="hello">Good morning, Sana</div>
+              <div class="bal">Available balance<b>$ 4,820.50</b></div>
+              <div class="chips"><span>Send</span><span>Pay bills</span><span>Save</span></div>
+              <div class="tx"><span>Payroll</span><span>+2,400</span></div>
+              <div class="tx"><span>Rent</span><span>−1,150</span></div>
+              <div class="tx"><span>Groceries</span><span>−86.20</span></div>
+            </div>
+          </div>
+        </div>
+        <figcaption><span class="tag">App concept</span><h3>Remittance wallet</h3><p>Cross-border transfers for families between the US, UK and South Asia.</p></figcaption>
+      </figure>
+      <figure class="c-card c-deck">
+        <div class="stage">
+          <div class="slide" aria-hidden="true">
+            <div class="t"><small>SERIES A · SLIDE 07</small>Revenue tripled in four quarters.</div>
+            <div class="bars"><i style="height:30%"></i><i style="height:46%"></i><i style="height:64%"></i><i style="height:92%"></i></div>
+          </div>
+        </div>
+        <figcaption><span class="tag">Presentation concept</span><h3>Investor deck</h3><p>One idea per slide, one highlighted number, so investors remember the story.</p></figcaption>
+      </figure>
+      <figure class="c-card c-ai">
+        <div class="stage">
+          <div class="chat" aria-hidden="true">
+            <div class="msg u">Summarise this 40-page lease and flag anything unusual.</div>
+            <div class="msg a">Done. Three clauses need attention: an auto-renewal with a 90-day notice window, a 7% annual escalation, and a personal guarantee on page 31.<small>Sources · p.4, p.12, p.31</small></div>
+            <div class="typing"><i></i><i></i><i></i></div>
+          </div>
+        </div>
+        <figcaption><span class="tag">AI build</span><h3>Document intelligence assistant</h3><p>The same approach powers ARK LAW AI, our own legal assistant for Pakistan, the USA, India and Bangladesh.</p></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">How a project runs</span>
+      <h2>Five stages, no surprises.</h2>
+    </div>
+    <ol class="steps">
+      <li><h3>Discover</h3><p>Workshops on goals, users and budget. You get a written scope and fixed quote.</p></li>
+      <li><h3>Design</h3><p>Wireframes, then high-fidelity screens or slides you approve before code starts.</p></li>
+      <li><h3>Build</h3><p>Two-week sprints with a live staging link and a weekly demo.</p></li>
+      <li><h3>Launch</h3><p>Testing, deployment, store submissions and team handover.</p></li>
+      <li><h3>Care</h3><p>A maintenance agreement keeps it secure, updated and improving.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="care" id="care">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Maintenance agreements</span>
+      <h2>Launch is day one.</h2>
+      <p class="lead">Every plan includes a named account manager, monthly reporting and guaranteed response times written into the agreement.</p>
+    </div>
+    <div class="plans">
+      <div class="plan"><h3>Essential</h3><span class="sla">Response within 1 business day</span><ul><li>Security patches & plugin updates</li><li>Daily backups & uptime monitoring</li><li>2 hours of small changes per month</li><li>Monthly health report</li></ul></div>
+      <div class="plan pick"><h3>Growth</h3><span class="sla">Response within 4 hours</span><ul><li>Everything in Essential</li><li>8 hours of improvements per month</li><li>Performance & SEO tuning</li><li>Quarterly roadmap review</li><li>AI feature updates as models improve</li></ul></div>
+      <div class="plan"><h3>Mission-critical</h3><span class="sla">Response within 1 hour, 24/7</span><ul><li>Everything in Growth</li><li>Dedicated engineering hours</li><li>Incident response & on-call cover</li><li>Load testing & security audits</li><li>Uptime target set in your SLA</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="train">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">ARK Academy</span>
+      <h2>Skills for the people who run the product.</h2>
+      <p class="lead">Practical soft skills and IT training for individuals, teams and whole organisations, taught by practitioners who build software every day.</p>
+    </div>
+    <div class="train-grid">
+      <div class="modes">
+        <div class="mode"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></div><div><h3>Online live</h3><p>Instructor-led virtual classes scheduled across US, UK, Asia and Australia time zones.</p></div></div>
+        <div class="mode"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21V9l9-6 9 6v12"/><path d="M9 21v-6h6v6"/></svg></div><div><h3>In-house</h3><p>Our trainers come to your office for workshops built around your tools and goals.</p></div></div>
+        <div class="mode"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div><h3>On demand</h3><p>Recorded courses, exercises and certificates your team can take at any hour.</p></div></div>
+      </div>
+      <div class="catalog">
+        <div><h3>Soft skills</h3><div class="chips"><span>Communication</span><span>Leadership</span><span>Presentation skills</span><span>Customer service</span><span>Teamwork</span><span>Time management</span><span>Negotiation</span><span>Emotional intelligence</span></div></div>
+        <div><h3>IT & technical</h3><div class="chips"><span>Web development</span><span>App development</span><span>Microsoft Office & Excel</span><span>Cybersecurity awareness</span><span>Cloud fundamentals</span><span>Data analytics</span><span>Digital marketing</span></div></div>
+        <div><h3>AI at work</h3><div class="chips"><span>Prompting for professionals</span><span>AI for lawyers</span><span>Automating with AI agents</span><span>Responsible AI use</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="leaders" id="people">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Leadership</span>
+      <h2>The people at the helm.</h2>
+    </div>
+    <div class="people">
+      <article class="person">
+        <div class="mono-av" aria-hidden="true">KR</div>
+        <div><span class="role">Founder & CEO</span><h3>Khawer Rabbani</h3></div>
+        <blockquote>“Technology should carry a business forward, not weigh it down.”</blockquote>
+        <p>Khawer founded ARK Group to give businesses one partner they can trust from idea to impact. He is a builder first: he created ARK LAW AI, a legal intelligence platform serving Pakistan, the USA, India and Bangladesh, and leads every engagement with the same standard. Clear plans, honest timelines, and products that keep working long after launch.</p>
+      </article>
+      <article class="person">
+        <div class="mono-av" aria-hidden="true">RR</div>
+        <div><span class="role">Co-Founder</span><h3>Raveeha Rabbani</h3></div>
+        <p>Raveeha studies at the University of California, Berkeley, at the heart of the Bay Area’s technology community. She brings fresh research, a sharp eye for user experience, and a direct line to emerging ideas in AI and product design, helping ARK Group stay ahead of where technology is going next.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="team">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Our crew</span>
+      <h2>Qualified, dedicated, and accountable.</h2>
+      <p class="lead">Our technical and implementation teams are certified engineers, designers and trainers who stay with your project from kickoff to long-term care.</p>
+    </div>
+    <div class="crew">
+      <div><h3>Engineering</h3><p>Full-stack, mobile and cloud engineers who write tested, documented code you own outright.</p></div>
+      <div><h3>Design</h3><p>Product and visual designers who prototype, test with users and ship design systems.</p></div>
+      <div><h3>AI & data</h3><p>Specialists in LLM applications, retrieval, automation and analytics.</p></div>
+      <div><h3>Implementation</h3><p>Project managers and rollout leads who handle migration, training and change management on site.</p></div>
+      <div><h3>Support</h3><p>Maintenance engineers on rotation so issues are picked up in every time zone.</p></div>
+      <div><h3>Training faculty</h3><p>Corporate trainers and practising engineers who teach from real projects.</p></div>
+    </div>
+    <div class="promise">
+      <div><b>One point of contact</b><span>A named lead for every account.</span></div>
+      <div><b>You own the code</b><span>Full source and documentation at handover.</span></div>
+      <div><b>NDA by default</b><span>Your ideas and data stay confidential.</span></div>
+      <div><b>Weekly demos</b><span>See progress, not status reports.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="world" id="world">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Worldwide</span>
+      <h2>Somewhere, it’s working hours for us.</h2>
+      <p class="lead">We serve clients across North America, Europe, South Asia, the Middle East and Australia. Here is the local time where our clients are right now.</p>
+    </div>
+    <div class="clocks" id="clocks"></div>
+    <p class="world-note">United States · United Kingdom · Pakistan · India · Australia · United Arab Emirates · Canada · and growing. Meetings are scheduled in your time zone, and invoices in your currency.</p>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <span class="eyebrow">Start a project</span>
+      <h2 style="margin-top:14px">Tell us what you want to build.</h2>
+      <p class="lead" style="margin-top:18px">Share a few details and we will come back with questions, a rough timeline and next steps for a discovery call.</p>
+      <div class="contact-points">
+        <div><b>Build</b><span>Websites, apps, decks, AI</span></div>
+        <div><b>Care</b><span>Maintenance agreements & SLAs</span></div>
+        <div><b>Train</b><span>Online, in-house, on demand</span></div>
+      </div>
+    </div>
+    <form id="brief" novalidate>
+      <label>Name<input id="f-name" required autocomplete="name"></label>
+      <label>Company<input id="f-co" autocomplete="organization"></label>
+      <label>Email<input id="f-email" type="email" required autocomplete="email"></label>
+      <label>Country<select id="f-country"><option>United States</option><option>United Kingdom</option><option>Pakistan</option><option>India</option><option>Australia</option><option>United Arab Emirates</option><option>Canada</option><option>Other</option></select></label>
+      <label class="full">I need help with<select id="f-need"><option>Website</option><option>Mobile app</option><option>Presentation / pitch deck</option><option>AI build</option><option>Maintenance agreement</option><option>Training (soft skills / IT)</option><option>Something else</option></select></label>
+      <label class="full">Project details<textarea id="f-msg" placeholder="Goals, timeline, budget range, links to anything existing"></textarea></label>
+      <div class="full"><button class="btn" type="submit">Prepare my brief</button></div>
+      <div class="ok" id="ok" hidden>
+        <b>Your brief is ready.</b>
+        <pre id="ok-text"></pre>
+        <div><button type="button" class="btn ghost" id="copy">Copy brief</button></div>
+      </div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a href="#top" class="brand">ARK GROUP</a>
+    <span>Websites · Apps · Presentations · AI builds · Maintenance · Training</span>
+    <span>© 2026 ARK Group</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const zones=[
+    ["US","San Francisco","America/Los_Angeles"],["US","New York","America/New_York"],
+    ["UK","London","Europe/London"],["AE","Dubai","Asia/Dubai"],
+    ["PK","Lahore","Asia/Karachi"],["IN","Mumbai","Asia/Kolkata"],
+    ["AU","Sydney","Australia/Sydney"]];
+  const el=document.getElementById("clocks");
+  el.innerHTML=zones.map((z,i)=>`<div class="clock"><span class="cc">${z[0]}</span><span class="city">${z[1]}</span><time id="t${i}">--:--</time><span class="st" id="s${i}"></span></div>`).join("");
+  function tick(){
+    const now=new Date();
+    zones.forEach((z,i)=>{
+      const t=new Intl.DateTimeFormat("en-GB",{hour:"2-digit",minute:"2-digit",timeZone:z[2]}).format(now);
+      const h=+new Intl.DateTimeFormat("en-GB",{hour:"2-digit",hour12:false,timeZone:z[2]}).format(now);
+      const wd=new Intl.DateTimeFormat("en-US",{weekday:"short",timeZone:z[2]}).format(now);
+      const open=h>=9&&h<18&&wd!=="Sat"&&wd!=="Sun";
+      document.getElementById("t"+i).textContent=t;
+      const s=document.getElementById("s"+i);
+      s.textContent=(open?"● Business hours":"○ After hours")+" · "+wd;
+      s.className="st"+(open?" on":"");
+    });
+  }
+  tick(); setInterval(tick,30000);
+
+  const f=document.getElementById("brief");
+  f.addEventListener("submit",e=>{
+    e.preventDefault();
+    const v=id=>document.getElementById(id).value.trim();
+    const name=document.getElementById("f-name"), em=document.getElementById("f-email");
+    if(!v("f-name")){name.focus();name.setCustomValidity("Please add your name");name.reportValidity();name.setCustomValidity("");return}
+    if(!em.checkValidity()||!v("f-email")){em.focus();em.reportValidity();return}
+    document.getElementById("ok-text").textContent=
+`Project brief for ARK Group
+Name: ${v("f-name")}
+Company: ${v("f-co")||"—"}
+Email: ${v("f-email")}
+Country: ${v("f-country")}
+Service: ${v("f-need")}
+Details: ${v("f-msg")||"—"}`;
+    document.getElementById("ok").hidden=false;
+  });
+  document.getElementById("copy").addEventListener("click",function(){
+    const txt=document.getElementById("ok-text").textContent;
+    const b=this;
+    navigator.clipboard.writeText(txt).then(()=>{b.textContent="Copied"},()=>{
+      const r=document.createRange();r.selectNodeContents(document.getElementById("ok-text"));
+      const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent="Selected, press Ctrl+C";
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
