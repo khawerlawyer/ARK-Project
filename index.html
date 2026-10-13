@@ -18,6 +18,9 @@
 .mini{font:500 .72rem var(--mono);padding:2px 8px;border-radius:6px;border:1px solid var(--line-2);background:var(--glass);cursor:pointer;margin-left:6px}
 .done.err{border-color:rgba(220,90,60,.4);background:rgba(220,90,60,.06)}
 #send[disabled]{opacity:.6;cursor:progress}
+.done-actions{display:flex;flex-wrap:wrap;gap:10px}
+.done.ok{border-color:rgba(14,159,132,.45);background:rgba(14,159,132,.08)}
+#prep[disabled]{opacity:.6}
 </style>
 <title>ARK Group Redesign</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -536,7 +539,7 @@ main{background:radial-gradient(900px 500px at 85% 0%,rgba(94,160,255,.18),trans
         <svg viewBox="0 0 172 70" style="height:44px;width:auto;color:var(--fg)" aria-hidden="true"><use href="#ark-logo"/></svg>
         <span class="label">Contact us</span>
         <h2>Start a project or ask us anything.</h2>
-        <p>Share a few details and the message goes straight to our CEO. We reply within one business day.</p>
+        <p>Fill in a few details to prepare your brief, review it, then send it to ARK Group for a consultation. We reply within one business day.</p>
         <dl class="dl">
           <div><dt>Email</dt><dd><span class="mail" id="mail">ceo@arklaw.ai</span> <button type="button" class="mini" id="copy-mail">Copy</button></dd></div>
           <div><dt>HQ</dt><dd>Silicon Valley, California</dd></div>
@@ -553,8 +556,8 @@ main{background:radial-gradient(900px 500px at 85% 0%,rgba(94,160,255,.18),trans
         <label>Country<select id="f-country"><option>United States</option><option>United Kingdom</option><option>Pakistan</option><option>India</option><option>Australia</option><option>United Arab Emirates</option><option>Canada</option><option>Other</option></select></label>
         <label class="full">Reason for contact<select id="f-need"><option>New project: Website</option><option>New project: Mobile app</option><option>New project: Presentation / pitch deck</option><option>New project: AI build</option><option>Maintenance agreement</option><option>Training (soft skills / IT)</option><option>General enquiry / information</option><option>Partnership</option><option>Something else</option></select></label>
         <label class="full">Message<textarea id="f-msg" placeholder="Your question, or project goals, timeline and budget range"></textarea></label>
-        <div class="full"><button class="btn btn-gold" type="submit" id="send">Send message <span class="arrow">→</span></button></div>
-        <div class="done" id="done" hidden role="status"><b id="done-title">Message sent.</b><p id="done-note" style="color:var(--mute);font-size:.92rem"></p><pre id="done-text" hidden></pre><div id="done-actions" hidden><button type="button" class="btn btn-line" id="copy">Copy message</button></div></div>
+        <div class="full"><button class="btn btn-gold" type="submit" id="prep">Prepare my brief <span class="arrow">→</span></button></div>
+        <div class="done" id="done" hidden><b id="done-title">Your brief is ready.</b><pre id="done-text"></pre><div class="done-actions"><button type="button" class="btn btn-line" id="copy">Copy brief</button><button type="button" class="btn btn-gold" id="send">Send to ARK Group for consultation <span class="arrow">→</span></button></div><p id="done-note" role="status" aria-live="polite" style="color:var(--mute);font-size:.92rem"></p></div>
       </form>
     </div>
   </div>
@@ -662,31 +665,36 @@ main{background:radial-gradient(900px 500px at 85% 0%,rgba(94,160,255,.18),trans
   tick();setInterval(tick,30000);
 
   /* ---------- Brief form ---------- */
-  document.getElementById("brief").addEventListener("submit",async e=>{
+  let brief=null;
+  document.getElementById("brief").addEventListener("submit",e=>{
     e.preventDefault();const v=id=>document.getElementById(id).value.trim();
-    const n=document.getElementById("f-name"),em=document.getElementById("f-email");
+    const n=document.getElementById("f-name"),em=document.getElementById("f-email"),m=document.getElementById("f-msg");
     if(!v("f-name")){n.setCustomValidity("Please add your name");n.reportValidity();n.setCustomValidity("");return}
     if(!v("f-email")||!em.checkValidity()){em.setCustomValidity("Please add a valid email");em.reportValidity();em.setCustomValidity("");return}
-    if(!v("f-msg")){const m=document.getElementById("f-msg");m.setCustomValidity("Please add a short message");m.reportValidity();m.setCustomValidity("");return}
-    if(v("f-hp"))return;
-    const body=`Name: ${v("f-name")}\nCompany: ${v("f-co")||"—"}\nEmail: ${v("f-email")}\nCountry: ${v("f-country")}\nReason: ${v("f-need")}\nMessage: ${v("f-msg")}`;
-    const btn=document.getElementById("send"),done=document.getElementById("done"),title=document.getElementById("done-title"),note=document.getElementById("done-note");
-    btn.disabled=true;btn.firstChild.textContent="Sending… ";
+    if(!v("f-msg")){m.setCustomValidity("Please add a short message");m.reportValidity();m.setCustomValidity("");return}
+    brief={name:v("f-name"),company:v("f-co")||"—",email:v("f-email"),country:v("f-country"),reason:v("f-need"),message:v("f-msg"),hp:v("f-hp")};
+    document.getElementById("done-text").textContent=`Project brief for ARK Group\nName: ${brief.name}\nCompany: ${brief.company}\nEmail: ${brief.email}\nCountry: ${brief.country}\nReason: ${brief.reason}\nMessage: ${brief.message}`;
+    const done=document.getElementById("done"),s=document.getElementById("send");
+    done.className="done";document.getElementById("done-title").textContent="Your brief is ready.";document.getElementById("done-note").textContent="Review it, then send it to ARK Group or copy it.";
+    s.disabled=false;s.innerHTML='Send to ARK Group for consultation <span class="arrow">→</span>';document.getElementById("copy").textContent="Copy brief";
+    done.hidden=false;done.scrollIntoView({behavior:reduce?"auto":"smooth",block:"nearest"});
+  });
+  document.getElementById("send").addEventListener("click",async function(){
+    if(!brief)return;const b=this,done=document.getElementById("done"),note=document.getElementById("done-note"),title=document.getElementById("done-title");
+    if(brief.hp)return;
+    b.disabled=true;b.textContent="Sending…";
     try{
       const r=await fetch("https://formsubmit.co/ajax/ceo@arklaw.ai",{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify({
-        _subject:`ARK Group website: ${v("f-need")} from ${v("f-name")}`,_template:"table",_captcha:"false",
-        name:v("f-name"),company:v("f-co")||"—",email:v("f-email"),country:v("f-country"),reason:v("f-need"),message:v("f-msg")})});
+        _subject:`ARK Group consultation request: ${brief.reason} from ${brief.name}`,_cc:"khawer.profession@gmail.com",_replyto:brief.email,_template:"table",_captcha:"false",
+        name:brief.name,company:brief.company,email:brief.email,country:brief.country,reason:brief.reason,message:brief.message})});
       const d=await r.json().catch(()=>({}));
       if(!r.ok||String(d.success)==="false")throw new Error(d.message||"Send failed");
-      done.className="done";title.textContent="Message sent.";note.textContent="Thank you, "+v("f-name")+". We have received your message and will reply to "+v("f-email")+" within one business day.";
-      document.getElementById("done-text").hidden=true;document.getElementById("done-actions").hidden=true;
-      e.target.querySelectorAll("input:not([type=hidden]),textarea").forEach(x=>{if(x.id!=="f-hp")x.value=""});
+      done.className="done ok";title.textContent="Sent to ARK Group.";b.textContent="Sent ✓";
+      note.textContent=`Thank you, ${brief.name}. Your consultation request has reached our team, and we will reply to ${brief.email} within one business day.`;
     }catch(err){
-      done.className="done err";title.textContent="We couldn't send that just now.";
-      note.textContent="Please email your message to ceo@arklaw.ai. You can copy it below.";
-      const pre=document.getElementById("done-text");pre.textContent=body;pre.hidden=false;document.getElementById("done-actions").hidden=false;
+      b.disabled=false;b.innerHTML='Try sending again <span class="arrow">→</span>';
+      note.textContent="We couldn't send that just now. Please try again, or copy the brief and email it to ceo@arklaw.ai.";
     }
-    done.hidden=false;btn.disabled=false;btn.firstChild.textContent="Send message ";
   });
   document.getElementById("copy-mail").addEventListener("click",function(){const b=this;navigator.clipboard.writeText("ceo@arklaw.ai").then(()=>b.textContent="Copied",()=>{const r=document.createRange();r.selectNodeContents(document.getElementById("mail"));const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent="Selected"})});
   document.getElementById("copy").addEventListener("click",function(){const b=this,txt=document.getElementById("done-text").textContent;navigator.clipboard.writeText(txt).then(()=>b.textContent="Copied",()=>{const r=document.createRange();r.selectNodeContents(document.getElementById("done-text"));const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent="Selected, press Ctrl+C"})});
