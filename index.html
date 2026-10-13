@@ -339,12 +339,12 @@ main{background:radial-gradient(900px 500px at 85% 0%,rgba(94,160,255,.18),trans
       </div>
       <div class="globe-wrap">
         <canvas id="globe" aria-label="Globe showing ARK Group's Silicon Valley headquarters connected to client cities worldwide" role="img"></canvas>
-        <div class="hq-tag"><span class="label">Headquarters</span><b>Silicon Valley, CA</b><span class="live"><i></i>Connected to 7 client hubs</span></div>
+        <div class="hq-tag"><span class="label">Headquarters</span><b>Silicon Valley, CA</b><span class="live"><i></i>Connected to 13 client hubs</span></div>
       </div>
     </div>
     <div class="markets">
       <span class="label">Clients in</span>
-      <span class="c"><code>US</code>United States</span><span class="c"><code>UK</code>United Kingdom</span><span class="c"><code>PK</code>Pakistan</span><span class="c"><code>IN</code>India</span><span class="c"><code>AU</code>Australia</span><span class="c"><code>AE</code>UAE</span><span class="c"><code>CA</code>Canada</span>
+      <span class="c"><code>US</code>United States</span><span class="c"><code>UK</code>United Kingdom</span><span class="c"><code>PK</code>Pakistan</span><span class="c"><code>IN</code>India</span><span class="c"><code>AU</code>Australia</span><span class="c"><code>AE</code>UAE</span><span class="c"><code>CA</code>Canada</span><span class="c"><code>BD</code>Bangladesh</span><span class="c"><code>QA</code>Qatar</span><span class="c"><code>SA</code>Saudi Arabia</span><span class="c"><code>FR</code>France</span>
     </div>
   </div>
 </header>
@@ -586,21 +586,21 @@ main{background:radial-gradient(900px 500px at 85% 0%,rgba(94,160,255,.18),trans
   /* ---------- Globe ---------- */
   const cv=document.getElementById("globe"), ctx=cv.getContext("2d");
   const HQ=[37.39,-122.03];
-  const cities=[["New York",40.71,-74.0],["London",51.5,-0.12],["Dubai",25.2,55.27],["Lahore",31.55,74.34],["Mumbai",19.07,72.88],["Sydney",-33.87,151.2],["Toronto",43.65,-79.38]];
+  const cities=[["New York",40.71,-74.0,7,12],["Toronto",43.65,-79.38,7,-4],["London",51.5,-0.12,-7,-4,"end"],["Paris",48.86,2.35,7,8],["Riyadh",24.71,46.68,-7,8,"end"],["Doha",25.29,51.53,0,-9,"center"],["Dubai",25.2,55.27,0,16,"center"],["Karachi",24.86,67.0,7,-2],["Lahore",31.55,74.34,7,-6],["Mumbai",19.07,72.88,-3,15,"end"],["Chennai",13.08,80.27,7,8],["Dhaka",23.81,90.41,7,4],["Sydney",-33.87,151.2,7,4]];
   const N=1100, pts=[];
   for(let i=0;i<N;i++){const y=1-(i/(N-1))*2, r=Math.sqrt(1-y*y), th=Math.PI*(3-Math.sqrt(5))*i; pts.push([Math.cos(th)*r,y,Math.sin(th)*r]);}
   const toV=(la,lo)=>{const p=la*Math.PI/180,l=lo*Math.PI/180;return[Math.cos(p)*Math.sin(l),Math.sin(p),Math.cos(p)*Math.cos(l)]};
   const slerp=(a,b,t)=>{const d=Math.acos(Math.min(1,a[0]*b[0]+a[1]*b[1]+a[2]*b[2])),s=Math.sin(d);if(s<1e-6)return a;const k1=Math.sin((1-t)*d)/s,k2=Math.sin(t*d)/s;return[a[0]*k1+b[0]*k2,a[1]*k1+b[1]*k2,a[2]*k1+b[2]*k2]};
   const hqV=toV(...HQ);
-  const arcs=cities.map(c=>{const v=toV(c[1],c[2]);const ps=[];for(let i=0;i<=64;i++){const t=i/64,p=slerp(hqV,v,t),h=1+0.28*Math.sin(Math.PI*t);ps.push([p[0]*h,p[1]*h,p[2]*h])}return{name:c[0],v,ps}});
+  const arcs=cities.map(c=>{const v=toV(c[1],c[2]);const dd=Math.acos(Math.min(1,hqV[0]*v[0]+hqV[1]*v[1]+hqV[2]*v[2]));const ps=[];for(let i=0;i<=64;i++){const t=i/64,p=slerp(hqV,v,t),h=1+(0.06+0.06*dd)*Math.sin(Math.PI*t);ps.push([p[0]*h,p[1]*h,p[2]*h])}return{name:c[0],v,ps,dx:c[3],dy:c[4],al:c[5]||"start"}});
   let W=0,H=0,R=0,dpr=1;
-  function size(){dpr=Math.min(2,devicePixelRatio||1);const b=cv.getBoundingClientRect();W=b.width;H=b.height;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);R=Math.min(W,H)*0.36}
+  function size(){dpr=Math.min(2,devicePixelRatio||1);const b=cv.getBoundingClientRect();W=b.width;H=b.height;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);R=Math.min(W,H)*0.35}
   size();addEventListener("resize",size);
   const tilt=0.42;
   function proj(v,rot){const c=Math.cos(rot),s=Math.sin(rot);const x=v[0]*c+v[2]*s,z1=-v[0]*s+v[2]*c;const ct=Math.cos(tilt),st=Math.sin(tilt);const y=v[1]*ct-z1*st,z=v[1]*st+z1*ct;return[W/2+x*R,H/2-y*R,z]}
   let t0=performance.now();
   function draw(now){
-    const el=Math.max(0,(now-t0)/1000), rot=0.95+(reduce?0:Math.sin(el*0.18)*0.55);
+    const el=Math.max(0,(now-t0)/1000), rot=0.95+(reduce?0:el*0.16);
     ctx.clearRect(0,0,W,H);
     const g=ctx.createRadialGradient(W/2-R*.3,H/2-R*.3,R*.1,W/2,H/2,R*1.15);
     g.addColorStop(0,"rgba(40,52,78,.55)");g.addColorStop(1,"rgba(4,6,11,0)");
@@ -610,10 +610,10 @@ main{background:radial-gradient(900px 500px at 85% 0%,rgba(94,160,255,.18),trans
     arcs.forEach((a,i)=>{
       ctx.lineWidth=1.4;
       for(let k=1;k<a.ps.length;k++){const p1=proj(a.ps[k-1],rot),p2=proj(a.ps[k],rot);if(p1[2]<-.15&&p2[2]<-.15)continue;const al=p2[2]<0?.12:.55;ctx.strokeStyle=`rgba(47,134,255,${al})`;ctx.beginPath();ctx.moveTo(p1[0],p1[1]);ctx.lineTo(p2[0],p2[1]);ctx.stroke()}
-      const ph=reduce?.6:((el*0.35+i*0.143)%1), idx=Math.floor(ph*64), pq=proj(a.ps[idx],rot);
+      const ph=reduce?.6:((el*0.3+i*0.077)%1), idx=Math.floor(ph*64), pq=proj(a.ps[idx],rot);
       if(pq[2]>-.1){ctx.fillStyle="#8CC0FF";ctx.shadowColor="#2F86FF";ctx.shadowBlur=12;ctx.beginPath();ctx.arc(pq[0],pq[1],2.4,0,7);ctx.fill();ctx.shadowBlur=0}
       const cq=proj(a.v,rot);
-      if(cq[2]>0){ctx.fillStyle="#4BE3C1";ctx.beginPath();ctx.arc(cq[0],cq[1],3,0,7);ctx.fill();ctx.font="500 11px 'Geist Mono',monospace";ctx.fillStyle=`rgba(220,230,245,${(.35+cq[2]*.6).toFixed(2)})`;ctx.fillText(a.name,cq[0]+7,cq[1]+4)}
+      if(cq[2]>0){ctx.fillStyle="#4BE3C1";ctx.beginPath();ctx.arc(cq[0],cq[1],3,0,7);ctx.fill();ctx.font="500 10.5px 'Geist Mono',monospace";ctx.textAlign=a.al;ctx.fillStyle=`rgba(220,230,245,${(.25+cq[2]*.7).toFixed(2)})`;ctx.fillText(a.name,cq[0]+a.dx,cq[1]+a.dy);ctx.textAlign="start"}
     });
     const h=proj(hqV,rot);
     if(h[2]>-.2){ctx.fillStyle="rgba(47,134,255,.18)";ctx.beginPath();ctx.arc(h[0],h[1],12+(reduce?0:Math.sin(el*2.5)*3),0,7);ctx.fill();ctx.fillStyle="#2F86FF";ctx.beginPath();ctx.arc(h[0],h[1],4.5,0,7);ctx.fill();ctx.font="600 11.5px 'Geist Mono',monospace";ctx.fillStyle="#8CC0FF";ctx.fillText("SILICON VALLEY",h[0]+10,h[1]-8)}
