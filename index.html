@@ -14,7 +14,11 @@
 <meta property="og:description" content="Software, AI and skills for companies that move fast. Headquartered in Silicon Valley, California.">
 <meta property="og:image" content="https://www.arkgroup.info/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<style>img{max-width:100%}[hidden]{display:none!important}body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+<style>img{max-width:100%}[hidden]{display:none!important}body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}.mail{font-family:var(--mono);font-size:.88rem;user-select:all;color:var(--gold)}
+.mini{font:500 .72rem var(--mono);padding:2px 8px;border-radius:6px;border:1px solid var(--line-2);background:var(--glass);cursor:pointer;margin-left:6px}
+.done.err{border-color:rgba(220,90,60,.4);background:rgba(220,90,60,.06)}
+#send[disabled]{opacity:.6;cursor:progress}
+</style>
 <title>ARK Group Redesign</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -530,10 +534,11 @@ main{background:radial-gradient(900px 500px at 85% 0%,rgba(94,160,255,.18),trans
     <div class="cta-box">
       <div class="info">
         <svg viewBox="0 0 172 70" style="height:44px;width:auto;color:var(--fg)" aria-hidden="true"><use href="#ark-logo"/></svg>
-        <span class="label">Start a project</span>
-        <h2>Tell us what you want to build.</h2>
-        <p>Share a few details. We will come back with questions, a rough timeline and a time for a discovery call.</p>
+        <span class="label">Contact us</span>
+        <h2>Start a project or ask us anything.</h2>
+        <p>Share a few details and the message goes straight to our CEO. We reply within one business day.</p>
         <dl class="dl">
+          <div><dt>Email</dt><dd><span class="mail" id="mail">ceo@arklaw.ai</span> <button type="button" class="mini" id="copy-mail">Copy</button></dd></div>
           <div><dt>HQ</dt><dd>Silicon Valley, California</dd></div>
           <div><dt>Build</dt><dd>Websites, apps, decks, AI</dd></div>
           <div><dt>Care</dt><dd>Maintenance agreements & SLAs</dd></div>
@@ -541,14 +546,15 @@ main{background:radial-gradient(900px 500px at 85% 0%,rgba(94,160,255,.18),trans
         </dl>
       </div>
       <form id="brief" novalidate>
+        <input type="text" id="f-hp" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
         <label>Name<input id="f-name" autocomplete="name" placeholder="Your name"></label>
         <label>Company<input id="f-co" autocomplete="organization" placeholder="Company"></label>
         <label>Email<input id="f-email" type="email" autocomplete="email" placeholder="you@company.com"></label>
         <label>Country<select id="f-country"><option>United States</option><option>United Kingdom</option><option>Pakistan</option><option>India</option><option>Australia</option><option>United Arab Emirates</option><option>Canada</option><option>Other</option></select></label>
-        <label class="full">I need help with<select id="f-need"><option>Website</option><option>Mobile app</option><option>Presentation / pitch deck</option><option>AI build</option><option>Maintenance agreement</option><option>Training (soft skills / IT)</option><option>Something else</option></select></label>
-        <label class="full">Project details<textarea id="f-msg" placeholder="Goals, timeline, budget range, links to anything existing"></textarea></label>
-        <div class="full"><button class="btn btn-gold" type="submit">Prepare my brief <span class="arrow">→</span></button></div>
-        <div class="done" id="done" hidden><b>Your brief is ready.</b><pre id="done-text"></pre><div><button type="button" class="btn btn-line" id="copy">Copy brief</button></div></div>
+        <label class="full">Reason for contact<select id="f-need"><option>New project: Website</option><option>New project: Mobile app</option><option>New project: Presentation / pitch deck</option><option>New project: AI build</option><option>Maintenance agreement</option><option>Training (soft skills / IT)</option><option>General enquiry / information</option><option>Partnership</option><option>Something else</option></select></label>
+        <label class="full">Message<textarea id="f-msg" placeholder="Your question, or project goals, timeline and budget range"></textarea></label>
+        <div class="full"><button class="btn btn-gold" type="submit" id="send">Send message <span class="arrow">→</span></button></div>
+        <div class="done" id="done" hidden role="status"><b id="done-title">Message sent.</b><p id="done-note" style="color:var(--mute);font-size:.92rem"></p><pre id="done-text" hidden></pre><div id="done-actions" hidden><button type="button" class="btn btn-line" id="copy">Copy message</button></div></div>
       </form>
     </div>
   </div>
@@ -563,7 +569,7 @@ main{background:radial-gradient(900px 500px at 85% 0%,rgba(94,160,255,.18),trans
       <div><h4>Support</h4><a href="#care">Maintenance plans</a><a href="#academy">ARK Academy</a><a href="#process">How we work</a></div>
       <div><h4>Company</h4><a href="#company">Leadership</a><a href="#company">Team</a><a href="#global">Global</a><a href="#contact">Contact</a></div>
     </div>
-    <div class="legal"><span>© 2026 ARK Group · Silicon Valley, California</span><span>arkgroup.info</span></div>
+    <div class="legal"><span>© 2026 ARK Group · Silicon Valley, California · ceo@arklaw.ai</span><span>arkgroup.info</span></div>
   </div>
 </footer>
 
@@ -634,7 +640,7 @@ main{background:radial-gradient(900px 500px at 85% 0%,rgba(94,160,255,.18),trans
   navLinks.forEach(a=>{const s=document.querySelector(a.getAttribute("href"));if(s)io.observe(s)});
 
   /* ---------- Command palette ---------- */
-  const items=[["Services","Build, extend, AI","#services"],["Our work","Websites, apps, decks, AI","#work"],["How we work","Five-stage process","#process"],["Maintenance plans","Essential, Growth, Mission-critical","#care"],["ARK Academy","Soft skills & IT training","#academy"],["Leadership","Justice S. A. Rabbani & Khawer Rabbani","#company"],["Our team","Engineering, design, implementation","#company"],["Global","Client hubs & local time","#global"],["Start a project","Contact form","#contact"]];
+  const items=[["Services","Build, extend, AI","#services"],["Our work","Websites, apps, decks, AI","#work"],["How we work","Five-stage process","#process"],["Maintenance plans","Essential, Growth, Mission-critical","#care"],["ARK Academy","Soft skills & IT training","#academy"],["Leadership","Justice S. A. Rabbani & Khawer Rabbani","#company"],["Our team","Engineering, design, implementation","#company"],["Global","Client hubs & local time","#global"],["Contact us","Start a project or ask a question","#contact"]];
   const dlg=document.getElementById("cmd"), q=document.getElementById("cmd-q"), list=document.getElementById("cmd-list");
   if(/Mac|iPhone|iPad/.test(navigator.platform||navigator.userAgent))document.getElementById("kbd").textContent="⌘K";
   let sel=0, shown=items;
@@ -656,14 +662,33 @@ main{background:radial-gradient(900px 500px at 85% 0%,rgba(94,160,255,.18),trans
   tick();setInterval(tick,30000);
 
   /* ---------- Brief form ---------- */
-  document.getElementById("brief").addEventListener("submit",e=>{
+  document.getElementById("brief").addEventListener("submit",async e=>{
     e.preventDefault();const v=id=>document.getElementById(id).value.trim();
     const n=document.getElementById("f-name"),em=document.getElementById("f-email");
     if(!v("f-name")){n.setCustomValidity("Please add your name");n.reportValidity();n.setCustomValidity("");return}
     if(!v("f-email")||!em.checkValidity()){em.setCustomValidity("Please add a valid email");em.reportValidity();em.setCustomValidity("");return}
-    document.getElementById("done-text").textContent=`Project brief for ARK Group\nName: ${v("f-name")}\nCompany: ${v("f-co")||"—"}\nEmail: ${v("f-email")}\nCountry: ${v("f-country")}\nService: ${v("f-need")}\nDetails: ${v("f-msg")||"—"}`;
-    document.getElementById("done").hidden=false;
+    if(!v("f-msg")){const m=document.getElementById("f-msg");m.setCustomValidity("Please add a short message");m.reportValidity();m.setCustomValidity("");return}
+    if(v("f-hp"))return;
+    const body=`Name: ${v("f-name")}\nCompany: ${v("f-co")||"—"}\nEmail: ${v("f-email")}\nCountry: ${v("f-country")}\nReason: ${v("f-need")}\nMessage: ${v("f-msg")}`;
+    const btn=document.getElementById("send"),done=document.getElementById("done"),title=document.getElementById("done-title"),note=document.getElementById("done-note");
+    btn.disabled=true;btn.firstChild.textContent="Sending… ";
+    try{
+      const r=await fetch("https://formsubmit.co/ajax/ceo@arklaw.ai",{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify({
+        _subject:`ARK Group website: ${v("f-need")} from ${v("f-name")}`,_template:"table",_captcha:"false",
+        name:v("f-name"),company:v("f-co")||"—",email:v("f-email"),country:v("f-country"),reason:v("f-need"),message:v("f-msg")})});
+      const d=await r.json().catch(()=>({}));
+      if(!r.ok||String(d.success)==="false")throw new Error(d.message||"Send failed");
+      done.className="done";title.textContent="Message sent.";note.textContent="Thank you, "+v("f-name")+". We have received your message and will reply to "+v("f-email")+" within one business day.";
+      document.getElementById("done-text").hidden=true;document.getElementById("done-actions").hidden=true;
+      e.target.querySelectorAll("input:not([type=hidden]),textarea").forEach(x=>{if(x.id!=="f-hp")x.value=""});
+    }catch(err){
+      done.className="done err";title.textContent="We couldn't send that just now.";
+      note.textContent="Please email your message to ceo@arklaw.ai. You can copy it below.";
+      const pre=document.getElementById("done-text");pre.textContent=body;pre.hidden=false;document.getElementById("done-actions").hidden=false;
+    }
+    done.hidden=false;btn.disabled=false;btn.firstChild.textContent="Send message ";
   });
+  document.getElementById("copy-mail").addEventListener("click",function(){const b=this;navigator.clipboard.writeText("ceo@arklaw.ai").then(()=>b.textContent="Copied",()=>{const r=document.createRange();r.selectNodeContents(document.getElementById("mail"));const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent="Selected"})});
   document.getElementById("copy").addEventListener("click",function(){const b=this,txt=document.getElementById("done-text").textContent;navigator.clipboard.writeText(txt).then(()=>b.textContent="Copied",()=>{const r=document.createRange();r.selectNodeContents(document.getElementById("done-text"));const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent="Selected, press Ctrl+C"})});
 })();
 </script>
